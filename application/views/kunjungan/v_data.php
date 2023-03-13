@@ -32,7 +32,7 @@
                                             <td><?= $r['tgl']; ?></td>
                                             <td><?= $r['nama_pasien']; ?></td>
                                             <td><?= $r['jenis_kelamin']; ?></td>
-                                            <td><?= $r['umur']; ?></td>
+                                            <td><?= hitung_umur($r['tanggal']); ?></td>
                                             <td class="text-center">
                                                 <a href="<?= base_url(); ?>kunjungan/rekam/<?= $r['id_rm']; ?>" class="btn btn-success btn-sm">+</a>
                                             </td>

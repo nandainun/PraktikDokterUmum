@@ -30,7 +30,7 @@
                                             <td><?= $no; ?></td>
                                             <td><?= $r['nama_pasien']; ?></td>
                                             <td><?= $r['jenis_kelamin']; ?></td>
-                                            <td><?= $r['umur']; ?></td>
+                                            <td><?= hitung_umur($r['tanggal']); ?></td>
                                             <td><?= $r['alamat']; ?></td>
                                             <td>
                                                 <div class="dropdown">

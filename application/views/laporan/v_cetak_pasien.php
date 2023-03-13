@@ -73,7 +73,7 @@ function tgl_indo($tanggal)
                     <td><?= $r['nama_pasien']; ?></td>
                     <td><?= $r['alamat']; ?></td>
                     <td class="text-center"><?= $r['jenis_kelamin']; ?></td>
-                    <td><?= $r['umur']; ?></td>
+                    <td><?= hitung_umur($r['tanggal']); ?></td>
                 </tr>
             <?php $no++;
             } ?>

@@ -31,4 +31,21 @@ class M_obat extends   CI_Model
 
         return $query->num_rows();
     }
+
+    function update_obat($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id     = $data['id_obat'];
+
+        $sql    = "UPDATE obat SET stok = stok - '$jumlah' WHERE id_obat='$id'";
+        $this->db->query($sql);
+    }
+
+    function update_obat_hapus($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id     = $data['id_obat'];
+        $sql    = "UPDATE obat SET stok = stok + '$jumlah' WHERE id_obat='$id'";
+        $this->db->query($sql);
+    }
 }

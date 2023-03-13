@@ -30,9 +30,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <label class="col-sm-2 col-form-label">Umur</label>
+                                    <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                     <div class="col-sm-10">
-                                        <input type="number" name="umur" class="form-control" id="" required />
+                                        <input type="date" name="tanggal" class="form-control" id="" required />
                                     </div>
                                 </div>
                                 <div class="row mb-3">

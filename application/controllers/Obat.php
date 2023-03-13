@@ -36,12 +36,14 @@ class Obat extends CI_Controller
         $d   = $this->input->post('dosis');
         $ket = $this->input->post('keterangan');
         $stok = $this->input->post('stok');
+        $tglmasuk_obat = $this->input->post('tglmasuk_obat');
 
         $data   = array(
             'nama_obat'     => $nama,
             'sediaan'       => $s,
             'dosis'         => $d,
             'keterangan'    => $ket,
+            'tglmasuk_obat'    => $tglmasuk_obat,
             'stok'          => $stok
         );
         $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">

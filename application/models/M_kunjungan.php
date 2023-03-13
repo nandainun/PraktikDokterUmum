@@ -4,7 +4,7 @@ class M_kunjungan extends   CI_Model
 {
     function tampil_data()
     {
-        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin
+        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin, pasien.tanggal
                                     FROM rekam_medis
                                     INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien
                                      ");
@@ -37,7 +37,7 @@ class M_kunjungan extends   CI_Model
     // fungsi RM
     function tampil_rm($id)
     {
-        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin, pasien.alamat
+        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin, pasien.alamat, pasien.tanggal
                                     FROM rekam_medis
                                     INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien
                                     WHERE rekam_medis.id_rm='$id' 
@@ -48,7 +48,7 @@ class M_kunjungan extends   CI_Model
 
     function tampil_riwayat($pasien)
     {
-        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin, pasien.alamat
+        $query  = $this->db->query("SELECT rekam_medis.*, pasien.nama_pasien, pasien.umur, pasien.jenis_kelamin, pasien.alamat, pasien.tanggal
                                     FROM rekam_medis
                                     INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien
                                     WHERE rekam_medis.id_pasien='$pasien' 
@@ -68,16 +68,45 @@ class M_kunjungan extends   CI_Model
         return $query;
     }
 
-    function insert_resep($data)
+    function insert_resep($post)
     {
-        return $this->db->insert('resep_obat', $data);
+        $params = [
+            'id_rm'     => $post['id_rm'],
+            'id_obat'     => $post['id_obat'],
+            'jumlah'     => $post['jumlah'],
+        ];
+        $this->db->insert('resep_obat', $params);
     }
+
+    // public function insert_resep_obat($data)
+    // {
+    //     $this->db->insert('resep_obat', $data);
+    // }
+
+    public function get_obat_by_id($id)
+    {
+        $this->db->where('id_obat', $id);
+        $query = $this->db->get('obat');
+        return $query->row();
+    }
+
 
     function hapus_resep($where)
     {
         $this->db->where($where);
         $this->db->delete('resep_obat');
     }
+
+    function get($id = null)
+    {
+        $this->db->from('resep_obat');
+        if ($id != null) {
+            $this->db->where('id_resep', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
 
     function jumlah_kunjungan()
     {

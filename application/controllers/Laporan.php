@@ -13,6 +13,7 @@ class Laporan extends CI_Controller
         }
 
         $this->load->model('m_laporan');
+        $this->load->helper('Usia_helper');
     }
 
     // LAPORAN PASIEN

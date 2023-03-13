@@ -50,6 +50,7 @@
                                         <input type="number" name="stok" class="form-control" id="" required />
                                     </div>
                                 </div>
+                                <input type="hidden" name="tglmasuk_obat" value="<?php echo date("Y-m-d"); ?>">
                                 <div class="row justify-content-end">
                                     <div class="col-sm-10">
                                         <button type="submit" class="btn btn-primary">Simpan</button>

@@ -15,6 +15,7 @@ class Kunjungan extends CI_Controller
         $this->load->model('m_kunjungan');
         $this->load->model('m_pasien');
         $this->load->model('m_obat');
+        $this->load->helper('Usia_helper');
     }
 
     public function index()
@@ -102,7 +103,7 @@ class Kunjungan extends CI_Controller
         $id_pasien          = $q['id_pasien'];
         $data['riwayat']    = $this->m_kunjungan->tampil_riwayat($id_pasien)->result_array();
         // tampil data obat
-        $data['obat']       = $this->m_obat->tampil_data()->result_array();
+        $data['obat']       = $this->m_obat->tampil_data($id)->result_array();
         // tampil resep obat
         $data['resep']      = $this->m_kunjungan->tampil_resep($id)->result_array();
 
@@ -150,19 +151,18 @@ class Kunjungan extends CI_Controller
 
     function insert_resep()
     {
-        $id_rm     = $this->input->post('id');
-        $obat   = $this->input->post('obat');
-        $jumlah   = $this->input->post('jumlah');
+        $post   = $this->input->post(null, TRUE);
+        $id_rm     = $this->input->post('id_rm');
+        $obat   = $this->m_kunjungan->get_obat_by_id('id_obat');
 
-        $data = array(
-            'id_rm'   => $id_rm,
-            'id_obat'  => $obat,
-            'jumlah'  => $jumlah
-        );
+        $id_rm     = $this->input->post('id_rm');
+        $this->m_obat->update_obat($post);
+        $this->m_kunjungan->insert_resep($post);
 
-        $this->m_kunjungan->insert_resep($data);
         redirect('kunjungan/rekam/' . $id_rm);
     }
+
+
 
     function hapus_resep($id, $id_rm)
     {

@@ -31,7 +31,7 @@
                                                 <tr>
                                                     <th>Umur</th>
                                                     <td>:</td>
-                                                    <td><?= $d['umur']; ?></td>
+                                                    <td><?= hitung_umur($d['tanggal']); ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Alamat</th>
@@ -104,15 +104,23 @@
                         <div class="col-md-6">
                             <div class="card mb-4">
                                 <h5 class="card-header">Resep Obat</h5>
-                                <form action="<?= base_url('kunjungan/insert_resep'); ?>" method="POST">
-                                    <input type="hidden" name="id" value="<?= $d['id_rm']; ?>">
+
+                                <?php if ($this->session->flashdata('success')) : ?>
+                                    <div class="alert alert-danger">
+                                        <?php echo $this->session->flashdata('error'); ?>
+                                    </div>
+                                <?php endif; ?>
+
+
+                                <form action="<?= base_url(); ?>kunjungan/insert_resep" method="POST">
+                                    <input type="hidden" name="id_rm" value="<?= $d['id_rm']; ?>">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="form-group col-md-8">
-                                                <select name="obat" id="" class="js-example-basic-single form-control" required>
+                                                <select name="id_obat" id="" class="js-example-basic-single form-control" required>
                                                     <option value="" hidden>Pilih Obat</option>
                                                     <?php foreach ($obat as $r) { ?>
-                                                        <option value="<?= $r['id_obat'] ?>"><?= $r['nama_obat']; ?> : <?= $r['sediaan']; ?></option>
+                                                        <option value="<?= $r['id_obat'] ?>"><?= $r['nama_obat']; ?> : <?= $r['sediaan']; ?> = <?= $r['stok']; ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -120,7 +128,7 @@
                                                 <input type="number" name="jumlah" class="form-control" id="" placeholder="" required />
                                             </div>
                                             <div class="col-md-2">
-                                                <button type="submit" class="btn btn-sm btn-icon btn-primary">
+                                                <button type="submit" name="in-add" class="btn btn-sm btn-icon btn-primary">
                                                     <span class="tf-icons bx bx-plus-circle"></span>
                                                 </button>
                                             </div>
@@ -135,7 +143,6 @@
                                                 <th>No.</th>
                                                 <th>Nama Obat</th>
                                                 <th>Jumlah</th>
-                                                <th class="text-center">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">

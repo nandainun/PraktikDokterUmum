@@ -72,7 +72,7 @@ function tgl_indo($tanggal)
                 <tr>
                     <th>Umur</th>
                     <td>:</td>
-                    <td><?= $d['umur']; ?></td>
+                    <td><?= hitung_umur($d['tanggal']); ?></td>
                 </tr>
                 <tr>
                     <th>Alamat</th>

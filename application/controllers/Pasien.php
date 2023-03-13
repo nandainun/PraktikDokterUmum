@@ -13,6 +13,7 @@ class Pasien extends CI_Controller
         }
 
         $this->load->model('m_pasien');
+        $this->load->helper('Usia_helper');
     }
 
     public function index()
@@ -33,7 +34,7 @@ class Pasien extends CI_Controller
     {
         $nama   = $this->input->post('nama_pasien');
         $jk     = $this->input->post('jenis_kelamin');
-        $umur   = $this->input->post('umur');
+        $tanggal   = $this->input->post('tanggal');
         $alergi = $this->input->post('alergi');
         $alamat = $this->input->post('alamat');
         $tglmasuk = $this->input->post('tglmasuk');
@@ -41,7 +42,7 @@ class Pasien extends CI_Controller
         $data   = array(
             'nama_pasien'   => $nama,
             'jenis_kelamin' => $jk,
-            'umur'          => $umur,
+            'tanggal'          => $tanggal,
             'alergi'        => $alergi,
             'alamat'        => $alamat,
             'tglmasuk'        => $tglmasuk
@@ -68,14 +69,14 @@ class Pasien extends CI_Controller
         $id     = $this->input->post('id');
         $nama   = $this->input->post('nama_pasien');
         $jk     = $this->input->post('jenis_kelamin');
-        $umur   = $this->input->post('umur');
+        $tanggal   = $this->input->post('tanggal');
         $alergi = $this->input->post('alergi');
         $alamat = $this->input->post('alamat');
 
         $data   = array(
             'nama_pasien'   => $nama,
             'jenis_kelamin' => $jk,
-            'umur'          => $umur,
+            'tanggal'          => $tanggal,
             'alergi'        => $alergi,
             'alamat'        => $alamat
         );
